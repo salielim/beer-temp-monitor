@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-const beers = [
+let beers = [
   {
     id: '1',
     type: 'Pilsner',
@@ -43,119 +43,53 @@ const beers = [
 
 class App extends React.Component {
   state = {
-    temp1: '',
-    temp2: '',
-    temp3: '',
-    temp4: '',
-    temp5: '',
-    temp6: '',
+    temp: [],
   };
 
   componentDidMount() {
     axios
-      .post(
+      .get(
         `https://us-central1-noderite-crawler.cloudfunctions.net/beer-temp-monitor-backend`,
-        {
-          id: 1,
-        },
       )
       .then(res => {
-        const temp1 = res.data.data.temperature;
-        this.setState({ temp1 });
-      });
-
-    axios
-      .post(
-        `https://us-central1-noderite-crawler.cloudfunctions.net/beer-temp-monitor-backend`,
-        {
-          id: 2,
-        },
-      )
-      .then(res => {
-        const temp2 = res.data.data.temperature;
-        this.setState({ temp2 });
-      });
-
-    axios
-      .post(
-        `https://us-central1-noderite-crawler.cloudfunctions.net/beer-temp-monitor-backend`,
-        {
-          id: 3,
-        },
-      )
-      .then(res => {
-        const temp3 = res.data.data.temperature;
-        this.setState({ temp3 });
-      });
-
-    axios
-      .post(
-        `https://us-central1-noderite-crawler.cloudfunctions.net/beer-temp-monitor-backend`,
-        {
-          id: 4,
-        },
-      )
-      .then(res => {
-        const temp4 = res.data.data.temperature;
-        this.setState({ temp4 });
-      });
-
-    axios
-      .post(
-        `https://us-central1-noderite-crawler.cloudfunctions.net/beer-temp-monitor-backend`,
-        {
-          id: 5,
-        },
-      )
-      .then(res => {
-        const temp5 = res.data.data.temperature;
-        this.setState({ temp5 });
-      });
-
-    axios
-      .post(
-        `https://us-central1-noderite-crawler.cloudfunctions.net/beer-temp-monitor-backend`,
-        {
-          id: 6,
-        },
-      )
-      .then(res => {
-        const temp6 = res.data.data.temperature;
-        this.setState({ temp6 });
+        let temp = res.data.data;
+        this.setState({ temp });
       });
   }
 
   render() {
-    const { temp1, temp2, temp3, temp4, temp5, temp6 } = this.state;
+    const { temp } = this.state;
+    let liveBeers = beers.map((item, i) => Object.assign({}, item, temp[i]));
+
     return (
       <div>
         <h1>Beer Temperature Monitoring</h1>
-        <div>
-          <table className="table table-dark">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Beer Type</th>
-                <th scope="col">Min Temp</th>
-                <th scope="col">Max Temp</th>
-                <th scope="col">Current Temp</th>
-              </tr>
-            </thead>
-            {beers.map((beer, index) => {
+        <table className="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Beer Type</th>
+              <th scope="col">Min Temp</th>
+              <th scope="col">Max Temp</th>
+              <th scope="col">Current Temp</th>
+            </tr>
+          </thead>
+          <tbody>
+            {liveBeers.map((beer, index) => {
               return (
-                <tbody>
-                  <tr>
-                    <th scope="row">{beer.id}</th>
-                    <td>{beer.type}</td>
-                    <td>{beer.min}</td>
-                    <td>{beer.max}</td>
-                    {/* <td>{temp1}</td> */}
-                  </tr>
-                </tbody>
+                <tr>
+                  <td scope="row" key={index}>
+                    {beer.id}
+                  </td>
+                  <td>{beer.type}</td>
+                  <td>{beer.min}</td>
+                  <td>{beer.max}</td>
+                  <td>{beer.temperature}</td>
+                </tr>
               );
             })}
-          </table>
-        </div>
+          </tbody>
+        </table>
       </div>
     );
   }
