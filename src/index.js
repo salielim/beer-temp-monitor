@@ -2,6 +2,45 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
+const beers = [
+  {
+    id: '1',
+    type: 'Pilsner',
+    min: '4',
+    max: '6',
+  },
+  {
+    id: '2',
+    type: 'IPA',
+    min: '5',
+    max: '6',
+  },
+  {
+    id: '3',
+    type: 'Lager',
+    min: '4',
+    max: '7',
+  },
+  {
+    id: '4',
+    type: 'Stout',
+    min: '6',
+    max: '8',
+  },
+  {
+    id: '5',
+    type: 'Wheat beer',
+    min: '3',
+    max: '5',
+  },
+  {
+    id: '6',
+    type: 'Pale Ale',
+    min: '4',
+    max: '6',
+  },
+];
+
 class App extends React.Component {
   state = {
     temp1: '',
@@ -91,61 +130,32 @@ class App extends React.Component {
     return (
       <div>
         <h1>Beer Temperature Monitoring</h1>
-        <table className="table table-dark">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Beer Type</th>
-              <th scope="col">Min Temp</th>
-              <th scope="col">Max Temp</th>
-              <th scope="col">Current Temp</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Pilsner</td>
-              <td>4</td>
-              <td>6</td>
-              <td>{temp1}</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>IPA</td>
-              <td>5</td>
-              <td>6</td>
-              <td>{temp2}</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Lager</td>
-              <td>4</td>
-              <td>7</td>
-              <td>{temp3}</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Stout</td>
-              <td>6</td>
-              <td>8</td>
-              <td>{temp4}</td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Wheat beer</td>
-              <td>3</td>
-              <td>5</td>
-              <td>{temp5}</td>
-            </tr>
-            <tr>
-              <th scope="row">6</th>
-              <td>Pale Ale</td>
-              <td>4</td>
-              <td>6</td>
-              <td>{temp6}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div>
+          <table className="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Beer Type</th>
+                <th scope="col">Min Temp</th>
+                <th scope="col">Max Temp</th>
+                <th scope="col">Current Temp</th>
+              </tr>
+            </thead>
+            {beers.map((beer, index) => {
+              return (
+                <tbody>
+                  <tr>
+                    <th scope="row">{beer.id}</th>
+                    <td>{beer.type}</td>
+                    <td>{beer.min}</td>
+                    <td>{beer.max}</td>
+                    {/* <td>{temp1}</td> */}
+                  </tr>
+                </tbody>
+              );
+            })}
+          </table>
+        </div>
       </div>
     );
   }
