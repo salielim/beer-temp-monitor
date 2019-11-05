@@ -14,11 +14,13 @@ Deployed on Netlify, `https://beer-temp-monitor.netlify.com/`
 
 ## Backend:
 
-Node.js Express server
+Node.js Express Microservice
 
 Code repo on `https://github.com/salielim/beer-temp-monitor-backend`
 
 Deployed on Google Cloud Functions, `https://us-central1-noderite-crawler.cloudfunctions.net/beer-temp-monitor-backend`
+
+Note that the backend microservice does not run locally but deployed directly to the serverless Google Cloud Functions
 
 # Getting started with Frontend App
 
@@ -50,11 +52,12 @@ $ npm install netlify-cli -g
 
 $ netlify deploy
 ```
-Also this Git project is 
+
+Also this Git project has been setup with Continuous Deployment from this Git repository.
 
 # Questions I would ask
 
-In a real-life scenario, you would ask questions to clarify any doubts but for this challenge, document the questions you would ask and provide your own answers in the readme f​ile.
+In a real-life scenario, you would ask questions to clarify any doubts but for this challenge, document the questions you would ask and provide your own answers in the readme file.
 
 Q1. What does the existing application architecture look like and where is the data coming from https://temperature-sensor-service.herokuapp.com/sensor/1?
 
@@ -87,7 +90,8 @@ A4. Static range of beers for now.
 - I only had time to test using Jest the rendering of components, code test coverage is at 66.67% which is acceptable but not ideal and can be improved
 - Add unit tests to ensure that the live temperature is indeed within the min and max range
 - Add unit tests on the backend for the method
-- Add custom CSS styles instead of using Bootstrap CDN.
+- Add custom CSS styles instead of using Bootstrap CDN
+- Use serverless to deploy backend and enable the function to be run locally
 
 # Constraints
 
