@@ -29,6 +29,12 @@ Single command to run the app:
 $ npm start
 ```
 
+Single command to run the tests:
+
+```
+$ npm test
+```
+
 # Questions I would ask
 In a real-life scenario, you would ask questions to clarify any doubts but for this challenge, document the questions you would ask and provide your own answers in the readme f​ ile.
 
@@ -49,11 +55,14 @@ Simple and elegant logic and code.
 I refactored the code so that there's little reptition.
 
 ## What could you do better in your code next iteration?
-If I have more time I will add custom CSS styles instead of using Bootstrao CDN.
+* I only had time to test using Jest the rendering of components, code test coverage is at 66.67% and can be improved
+* Add unit tests to ensure that the live temperature is indeed within the min and max range
+* Add unit tests on the backend for the method
+* Add custom CSS styles instead of using Bootstrao CDN.
 
 # Constraints
 [x] You must use JavaScript technology for most of the solution
-[ ] The solution must be implemented with an acceptable level of automated tests; we
+[x] The solution must be implemented with an acceptable level of automated tests; we
 should be able to verify it from the command line.
 [x] There must be a web front-end component as well as a back-end component.
 [x] Your back-end component must integrate with our temperature service available at https://temperature-sensor-service.herokuapp.com/sensor/{id} ​with ​{id} being any ​string ​value you pass through. The service will return a JSON containing the string value you passed as ​id ​plus a ​temperature ​value between ​-2 ​and ​10​. Your back-end component must then be the data provider for your front-end component.
