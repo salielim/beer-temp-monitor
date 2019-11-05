@@ -46,6 +46,10 @@ class App extends React.Component {
     temp: [],
   };
 
+  reloadPage() {
+    window.location.reload();
+  }
+
   componentDidMount() {
     axios
       .get(
@@ -64,14 +68,21 @@ class App extends React.Component {
     return (
       <div>
         <h1>Beer Temperature Monitoring</h1>
+        <button
+          className="btn btn-outline-dark btn-lg btn-block"
+          onClick={() => this.reloadPage()}
+        >
+          Click here for live temperature updates
+        </button>
         <table className="table table-dark">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">ID</th>
               <th scope="col">Beer Type</th>
               <th scope="col">Min Temp</th>
               <th scope="col">Max Temp</th>
               <th scope="col">Current Temp</th>
+              <th scope="col">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -85,6 +96,11 @@ class App extends React.Component {
                   <td>{beer.min}</td>
                   <td>{beer.max}</td>
                   <td>{beer.temperature}</td>
+                  <td>
+                    {beer.temperature < beer.min || beer.temperature > beer.max
+                      ? 'Warning!'
+                      : 'Ok'}
+                  </td>
                 </tr>
               );
             })}
