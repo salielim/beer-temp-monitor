@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Table } from './table';
+import { Table } from './components/table';
 
 export class App extends React.Component {
   reloadPage() {

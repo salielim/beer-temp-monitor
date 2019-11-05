@@ -1,5 +1,5 @@
 import React from 'react';
-import { beers } from './beers';
+import { beers } from '../data/beers';
 import axios from 'axios';
 
 export class Table extends React.Component {
